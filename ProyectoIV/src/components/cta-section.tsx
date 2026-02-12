@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { featureFlags } from "@/config/featureFlags"
 
 export function CtaSection() {
   return (
@@ -24,15 +25,17 @@ export function CtaSection() {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
-          <Link to="/mapa">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary-foreground/30 font-semibold text-primary-foreground hover:bg-primary-foreground/10"
-            >
-              Explorar el Mapa
-            </Button>
-          </Link>
+          {featureFlags.contacto.mapa && (
+            <Link to="/mapa">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-primary-foreground/30 font-semibold text-primary-foreground hover:bg-primary-foreground/10"
+              >
+                Explorar el Mapa
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </section>

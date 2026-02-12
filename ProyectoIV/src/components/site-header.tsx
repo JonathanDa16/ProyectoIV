@@ -28,16 +28,19 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useAuth } from "@/components/auth-provider"
 
+import { featureFlags } from "@/config/featureFlags"
+
 const navItems = [
-  { to: "/", label: "Inicio", icon: Home },
-  { to: "/mapa", label: "Mapa", icon: Map },
-  { to: "/reportes", label: "Reportes", icon: FileText },
-  { to: "/foro", label: "Foro", icon: MessageSquare },
-  { to: "/galeria", label: "Galeria", icon: Camera },
-  { to: "/tienda", label: "Tienda", icon: ShoppingBag },
-  { to: "/faq", label: "FAQ", icon: HelpCircle },
-  { to: "/contacto", label: "Contacto", icon: Phone },
-]
+  { to: "/", label: "Inicio", icon: Home, enabled: true },
+  { to: "/#nosotros", label: "Nosotros", icon: FileText, enabled: featureFlags.contenidoInstitucional.paginas },
+  { to: "/#reportes", label: "Reportes", icon: FileText, enabled: true }, // Core functionality
+  { to: "/mapa", label: "Mapa", icon: Map, enabled: featureFlags.contacto.mapa },
+  { to: "/foro", label: "Foro", icon: MessageSquare, enabled: featureFlags.interaccion.foroFaq },
+  { to: "/galeria", label: "Galeria", icon: Camera, enabled: featureFlags.multimedia.galeria },
+  { to: "/tienda", label: "Tienda", icon: ShoppingBag, enabled: featureFlags.multimedia.tienda },
+  { to: "/faq", label: "FAQ", icon: HelpCircle, enabled: featureFlags.interaccion.foroFaq },
+  { to: "/contacto", label: "Contacto", icon: Phone, enabled: featureFlags.contacto.formulario },
+].filter(item => item.enabled)
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
@@ -48,9 +51,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-6">
         <Link to="/" className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <Shield className="h-5 w-5 text-primary-foreground" />
-          </div>
+          {featureFlags.identidadCorporativa.logotipo && (
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+              <Shield className="h-5 w-5 text-primary-foreground" />
+            </div>
+          )}
           <div className="flex flex-col">
             <span className="text-sm font-bold leading-tight tracking-tight text-foreground">
               Vigilancia Vecinal
@@ -74,11 +79,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link to="/nosotros" className="hidden lg:block">
-            <Button variant="outline" size="sm">
-              Nosotros
-            </Button>
-          </Link>
+
 
           {isAuthenticated ? (
             <DropdownMenu>
@@ -132,9 +133,11 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-80 p-0">
               <div className="flex h-full flex-col">
                 <div className="flex items-center gap-2.5 border-b border-border p-4">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-                    <Shield className="h-5 w-5 text-primary-foreground" />
-                  </div>
+                  {featureFlags.identidadCorporativa.logotipo && (
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+                      <Shield className="h-5 w-5 text-primary-foreground" />
+                    </div>
+                  )}
                   <div className="flex flex-col">
                     <span className="text-sm font-bold leading-tight text-foreground">
                       Vigilancia Vecinal
@@ -159,14 +162,7 @@ export function SiteHeader() {
                       </Link>
                     )
                   })}
-                  <Link
-                    to="/nosotros"
-                    onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                  >
-                    <FileText className="h-4 w-4" />
-                    Nosotros
-                  </Link>
+
                 </nav>
                 <div className="border-t border-border p-4">
                   {isAuthenticated ? (

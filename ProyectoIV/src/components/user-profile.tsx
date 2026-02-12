@@ -96,14 +96,14 @@ export function UserProfile() {
 
   if (loading) {
     return (
-      <div className="container flex min-h-screen items-center justify-center py-12">
+      <div className="container mx-auto flex min-h-screen items-center justify-center py-12">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }
 
   return (
-    <div className="container py-12">
+    <div className="container mx-auto py-12">
       <div className="mb-8">
         <h1 className="text-balance font-serif text-3xl font-bold tracking-tight">
           Mi Perfil

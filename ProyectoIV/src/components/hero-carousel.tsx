@@ -6,6 +6,8 @@ import { Link } from "react-router-dom"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+import { featureFlags } from "@/config/featureFlags"
+
 const slides = [
   {
     image: "/images/hero-1.jpg",
@@ -13,7 +15,8 @@ const slides = [
     description:
       "Reporta incidentes en tu colonia y ayuda a construir comunidades mas seguras para todos.",
     cta: "Reportar Incidente",
-    href: "/reportes",
+    href: "/#reportes",
+    enabled: true,
   },
   {
     image: "/images/hero-2.jpg",
@@ -22,6 +25,7 @@ const slides = [
       "Visualiza las zonas de riesgo y puntos criticos cerca de ti con nuestro mapa de incidentes.",
     cta: "Ver Mapa",
     href: "/mapa",
+    enabled: featureFlags.contacto.mapa,
   },
   {
     image: "/images/hero-3.jpg",
@@ -30,8 +34,9 @@ const slides = [
       "Unete al foro comunitario y colabora con tus vecinos para prevenir delitos en tu zona.",
     cta: "Ir al Foro",
     href: "/foro",
+    enabled: featureFlags.interaccion.foroFaq,
   },
-]
+].filter(slide => slide.enabled)
 
 export function HeroCarousel() {
   const [current, setCurrent] = useState(0)

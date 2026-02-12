@@ -1,7 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+
 import {
-    Shield,
     Target,
     Eye,
     Award,
@@ -9,30 +8,6 @@ import {
     MapPin,
     CheckCircle2,
 } from "lucide-react"
-
-const team = [
-    {
-        name: "Jonathan Daniel Gomez",
-        role: "Scrum Master",
-        initials: "JG",
-        description:
-            "Coordinador del equipo de desarrollo, encargado de facilitar las ceremonias Scrum y remover impedimentos del equipo.",
-    },
-    {
-        name: "Raymundo Chavarria",
-        role: "Product Owner",
-        initials: "RC",
-        description:
-            "Responsable de la vision del producto, priorizacion del backlog y comunicacion con los stakeholders del proyecto.",
-    },
-    {
-        name: "Cristian Martin Orozco",
-        role: "Developer",
-        initials: "CO",
-        description:
-            "Desarrollador principal del sistema, encargado de la implementacion tecnica de las funcionalidades de la plataforma.",
-    },
-]
 
 const policies = [
     "Proteger la privacidad y datos personales de todos los usuarios",
@@ -45,7 +20,38 @@ const policies = [
 
 export default function NosotrosPage() {
     return (
-        <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+            {/* Quiénes Somos */}
+            <section id="quienes-somos" className="mb-16 scroll-mt-20">
+                <div className="mx-auto mb-8 max-w-2xl text-center">
+                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                        <Users className="h-6 w-6 text-primary" />
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold text-foreground">
+                        Quiénes Somos
+                    </h2>
+                    <p className="mt-2 text-muted-foreground">
+                        Comprometidos con la seguridad y el bienestar de nuestra comunidad.
+                    </p>
+                </div>
+
+                <Card className="mx-auto max-w-4xl bg-card/50 backdrop-blur-sm">
+                    <CardContent className="p-8">
+                        <div className="prose prose-gray dark:prose-invert mx-auto max-w-none text-center">
+                            <p className="text-lg leading-relaxed text-muted-foreground">
+                                En <strong>Vigilancia Vecinal</strong>, somos una organización dedicada a fortalecer el tejido social y la seguridad comunitaria.
+                                Nacimos de la necesidad de conectar a vecinos y autoridades para crear entornos más seguros, transparentes y colaborativos.
+                            </p>
+                            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+                                Creemos firmemente que la seguridad es una responsabilidad compartida. A través de nuestra plataforma, facilitamos
+                                la comunicación en tiempo real, la gestión eficiente de reportes y el acceso a información vital para la prevención del delito.
+                                Nuestra labor va más allá de la tecnología; buscamos empoderar a cada ciudadano para que sea un agente activo de cambio en su colonia.
+                            </p>
+                        </div>
+                    </CardContent>
+                </Card>
+            </section>
+
             {/* Mission & Vision */}
             <section className="mb-16">
                 <div className="mx-auto mb-10 max-w-2xl text-center">
@@ -60,7 +66,7 @@ export default function NosotrosPage() {
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2">
-                    <Card className="border-primary/20">
+                    <Card className="border-primary/20 bg-card/50 backdrop-blur-sm">
                         <CardContent className="p-6">
                             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                                 <Target className="h-6 w-6 text-primary" />
@@ -79,7 +85,7 @@ export default function NosotrosPage() {
                         </CardContent>
                     </Card>
 
-                    <Card className="border-accent/20">
+                    <Card className="border-accent/20 bg-card/50 backdrop-blur-sm">
                         <CardContent className="p-6">
                             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10">
                                 <Eye className="h-6 w-6 text-accent" />
@@ -116,7 +122,7 @@ export default function NosotrosPage() {
                 </div>
 
                 <div className="mx-auto max-w-2xl">
-                    <Card>
+                    <Card className="bg-card/50 backdrop-blur-sm">
                         <CardContent className="p-6">
                             <ul className="space-y-4">
                                 {policies.map((policy, i) => (
@@ -130,44 +136,6 @@ export default function NosotrosPage() {
                             </ul>
                         </CardContent>
                     </Card>
-                </div>
-            </section>
-
-            {/* Team */}
-            <section id="equipo" className="mb-16 scroll-mt-20">
-                <div className="mx-auto mb-8 max-w-2xl text-center">
-                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                        <Users className="h-6 w-6 text-primary" />
-                    </div>
-                    <h2 className="font-serif text-2xl font-bold text-foreground">
-                        Equipo de Desarrollo
-                    </h2>
-                    <p className="mt-2 text-muted-foreground">
-                        Integrantes del equipo responsable del desarrollo de la plataforma.
-                    </p>
-                </div>
-
-                <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
-                    {team.map((member) => (
-                        <Card key={member.name} className="text-center">
-                            <CardContent className="p-6">
-                                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                                    <span className="text-xl font-bold text-primary">
-                                        {member.initials}
-                                    </span>
-                                </div>
-                                <h3 className="text-sm font-bold text-foreground">
-                                    {member.name}
-                                </h3>
-                                <Badge variant="secondary" className="mt-1.5">
-                                    {member.role}
-                                </Badge>
-                                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                                    {member.description}
-                                </p>
-                            </CardContent>
-                        </Card>
-                    ))}
                 </div>
             </section>
 
@@ -185,7 +153,7 @@ export default function NosotrosPage() {
                     </p>
                 </div>
 
-                <Card className="mx-auto max-w-4xl overflow-hidden">
+                <Card className="mx-auto max-w-4xl overflow-hidden bg-card/50 backdrop-blur-sm">
                     <div className="aspect-[21/9]">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.1!2d-103.375!3d20.675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDQwJzMwLjAiTiAxMDPCsDIyJzMwLjAiVw!5e0!3m2!1ses!2smx!4v1705350000000!5m2!1ses!2smx"

@@ -16,7 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { StarRating } from "@/components/star-rating"
+import { featureFlags } from "@/config/featureFlags"
 
 const features = [
   {
@@ -26,14 +26,16 @@ const features = [
       "Visualiza en tiempo real los puntos criticos y zonas de riesgo de tu colonia en un mapa interactivo.",
     href: "/mapa",
     color: "bg-primary/10 text-primary",
+    enabled: featureFlags.contacto.mapa,
   },
   {
     icon: FileText,
     title: "Reportes Ciudadanos",
     description:
       "Envia reportes detallados de incidentes con evidencias fotograficas y ubicacion exacta.",
-    href: "/reportes",
+    href: "/#reportes",
     color: "bg-accent/10 text-accent",
+    enabled: true,
   },
   {
     icon: MessageSquare,
@@ -42,6 +44,7 @@ const features = [
       "Comparte alertas y coordina con tus vecinos para mantener la seguridad de la colonia.",
     href: "/foro",
     color: "bg-success/10 text-success",
+    enabled: featureFlags.interaccion.foroFaq,
   },
   {
     icon: Camera,
@@ -50,6 +53,7 @@ const features = [
       "Repositorio multimedia organizado para revisar fotos y videos de incidentes reportados.",
     href: "/galeria",
     color: "bg-warning/10 text-warning",
+    enabled: featureFlags.multimedia.galeria,
   },
   {
     icon: ShoppingBag,
@@ -58,6 +62,7 @@ const features = [
       "Catalogo de articulos de seguridad: camaras, alarmas, sensores y mas para tu hogar.",
     href: "/tienda",
     color: "bg-destructive/10 text-destructive",
+    enabled: featureFlags.multimedia.tienda,
   },
   {
     icon: Phone,
@@ -66,8 +71,9 @@ const features = [
       "Formulario de contacto para autoridades y ciudadanos que deseen mas informacion.",
     href: "/contacto",
     color: "bg-primary/10 text-primary",
+    enabled: featureFlags.contacto.formulario,
   },
-]
+].filter(f => f.enabled)
 
 export function FeaturesSection() {
   return (
@@ -100,14 +106,7 @@ export function FeaturesSection() {
                       {feature.description}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between">
-                      <StarRating size="sm" />
-                      <span className="text-xs text-muted-foreground">
-                        Valora esta seccion
-                      </span>
-                    </div>
-                  </CardContent>
+                  <CardContent />
                 </Card>
               </Link>
             )
