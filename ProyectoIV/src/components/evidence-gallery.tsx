@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog"
-import { Calendar, MapPin, Eye, X } from "lucide-react"
+} from "@/components/ui/dialog";
+import { Calendar, MapPin, Eye, X } from "lucide-react";
 
 interface Evidence {
-  id: number
-  image: string
-  title: string
-  type: string
-  date: string
-  location: string
-  description: string
-  category: "foto" | "video"
+  id: number;
+  image: string;
+  title: string;
+  type: string;
+  date: string;
+  location: string;
+  description: string;
+  category: "foto" | "video";
 }
 
 const evidences: Evidence[] = [
@@ -30,7 +30,7 @@ const evidences: Evidence[] = [
     image: "/images/evidence-1.jpg",
     title: "Falla en alumbrado - Calle Morelos",
     type: "Falta de alumbrado",
-    date: "15 Ene 2025",
+    date: "15 Ene 2026",
     location: "Calle Morelos #234",
     description:
       "Luminaria completamente apagada generando zona oscura. Reportado al municipio.",
@@ -41,7 +41,7 @@ const evidences: Evidence[] = [
     image: "/images/evidence-2.jpg",
     title: "Vandalismo en parque central",
     type: "Vandalismo",
-    date: "14 Ene 2025",
+    date: "14 Ene 2026",
     location: "Parque de la Colonia Centro",
     description:
       "Grafiti y daño a mobiliario urbano. Se solicita limpieza y vigilancia.",
@@ -52,7 +52,7 @@ const evidences: Evidence[] = [
     image: "/images/evidence-3.jpg",
     title: "Accidente vial en cruce",
     type: "Accidente",
-    date: "13 Ene 2025",
+    date: "13 Ene 2026",
     location: "Av. Juarez esq. Reforma",
     description:
       "Colision vehicular en cruce sin semaforo. Se requiere señalamiento.",
@@ -63,7 +63,7 @@ const evidences: Evidence[] = [
     image: "/images/evidence-4.jpg",
     title: "Intento de robo a comercio",
     type: "Robo",
-    date: "12 Ene 2025",
+    date: "12 Ene 2026",
     location: "Calle Independencia #456",
     description:
       "Cortina metalica dañada tras intento de robo nocturno. Camara capturo evidencia.",
@@ -74,7 +74,7 @@ const evidences: Evidence[] = [
     image: "/images/evidence-5.jpg",
     title: "Reunion de vigilancia vecinal",
     type: "Organizacion",
-    date: "11 Ene 2025",
+    date: "11 Ene 2026",
     location: "Plaza comunitaria",
     description:
       "Vecinos organizandose para rondines de vigilancia en la colonia.",
@@ -85,13 +85,13 @@ const evidences: Evidence[] = [
     image: "/images/evidence-6.jpg",
     title: "Apagon en zona residencial",
     type: "Infraestructura",
-    date: "10 Ene 2025",
+    date: "10 Ene 2026",
     location: "Col. Americana",
     description:
       "Tres cuadras sin iluminacion publica por falla en transformador.",
     category: "foto",
   },
-]
+];
 
 const typeColors: Record<string, string> = {
   "Falta de alumbrado": "bg-warning/10 text-warning",
@@ -100,15 +100,15 @@ const typeColors: Record<string, string> = {
   Robo: "bg-destructive/10 text-destructive",
   Organizacion: "bg-success/10 text-success",
   Infraestructura: "bg-warning/10 text-warning",
-}
+};
 
 export function EvidenceGallery() {
-  const [selected, setSelected] = useState<Evidence | null>(null)
-  const [filter, setFilter] = useState("todos")
+  const [selected, setSelected] = useState<Evidence | null>(null);
+  const [filter, setFilter] = useState("todos");
 
-  const types = ["todos", ...new Set(evidences.map((e) => e.type))]
+  const types = ["todos", ...new Set(evidences.map((e) => e.type))];
   const filtered =
-    filter === "todos" ? evidences : evidences.filter((e) => e.type === filter)
+    filter === "todos" ? evidences : evidences.filter((e) => e.type === filter);
 
   return (
     <section>
@@ -200,5 +200,5 @@ export function EvidenceGallery() {
         </DialogContent>
       </Dialog>
     </section>
-  )
+  );
 }

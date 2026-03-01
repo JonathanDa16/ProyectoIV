@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { AlertTriangle, MapPin, Clock, Filter } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useEffect, useRef, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AlertTriangle, MapPin, Clock, Filter } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface Incident {
-  id: number
-  lat: number
-  lng: number
-  type: string
-  description: string
-  date: string
-  severity: "alta" | "media" | "baja"
-  color: string
+  id: number;
+  lat: number;
+  lng: number;
+  type: string;
+  description: string;
+  date: string;
+  severity: "alta" | "media" | "baja";
+  color: string;
 }
 
 const incidents: Incident[] = [
@@ -24,7 +24,7 @@ const incidents: Incident[] = [
     lng: -103.3475,
     type: "Robo a transeúnte",
     description: "Reportan asalto a mano armada cerca de la plaza principal.",
-    date: "2025-01-15 18:30",
+    date: "2026-01-15 18:30",
     severity: "alta",
     color: "#ef4444",
   },
@@ -34,7 +34,7 @@ const incidents: Incident[] = [
     lng: -103.3496,
     type: "Vandalismo",
     description: "Grafiti y daño a mobiliario urbano en parque del barrio.",
-    date: "2025-01-14 22:00",
+    date: "2026-01-14 22:00",
     severity: "media",
     color: "#f59e0b",
   },
@@ -44,7 +44,7 @@ const incidents: Incident[] = [
     lng: -103.3315,
     type: "Robo de vehiculo",
     description: "Vehiculo sustraido del estacionamiento del centro comercial.",
-    date: "2025-01-14 14:15",
+    date: "2026-01-14 14:15",
     severity: "alta",
     color: "#ef4444",
   },
@@ -54,7 +54,7 @@ const incidents: Incident[] = [
     lng: -103.3685,
     type: "Actividad sospechosa",
     description: "Personas merodeando en zona residencial durante la noche.",
-    date: "2025-01-13 23:45",
+    date: "2026-01-13 23:45",
     severity: "baja",
     color: "#3b82f6",
   },
@@ -64,7 +64,7 @@ const incidents: Incident[] = [
     lng: -103.3575,
     type: "Robo a casa habitacion",
     description: "Intento de robo a domicilio en la colonia Americana.",
-    date: "2025-01-13 03:20",
+    date: "2026-01-13 03:20",
     severity: "alta",
     color: "#ef4444",
   },
@@ -74,7 +74,7 @@ const incidents: Incident[] = [
     lng: -103.3515,
     type: "Falta de alumbrado",
     description: "Luminarias apagadas en tres cuadras consecutivas.",
-    date: "2025-01-12 20:00",
+    date: "2026-01-12 20:00",
     severity: "media",
     color: "#f59e0b",
   },
@@ -84,7 +84,7 @@ const incidents: Incident[] = [
     lng: -103.3395,
     type: "Accidente vial",
     description: "Colision entre dos vehiculos en cruce peligroso.",
-    date: "2025-01-12 08:30",
+    date: "2026-01-12 08:30",
     severity: "media",
     color: "#f59e0b",
   },
@@ -94,76 +94,76 @@ const incidents: Incident[] = [
     lng: -103.3235,
     type: "Asalto en transporte",
     description: "Pasajeros reportan asalto en ruta de camion.",
-    date: "2025-01-11 19:00",
+    date: "2026-01-11 19:00",
     severity: "alta",
     color: "#ef4444",
   },
-]
+];
 
 const severityColors = {
   alta: "bg-destructive text-destructive-foreground",
   media: "bg-warning text-warning-foreground",
   baja: "bg-primary text-primary-foreground",
-}
+};
 
 export function IncidentMap() {
-  const mapRef = useRef<HTMLDivElement>(null)
-  const mapInstanceRef = useRef<unknown>(null)
+  const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<unknown>(null);
   const [selectedIncident, setSelectedIncident] = useState<Incident | null>(
-    null
-  )
-  const [filter, setFilter] = useState<string>("todos")
-  const [mapReady, setMapReady] = useState(false)
+    null,
+  );
+  const [filter, setFilter] = useState<string>("todos");
+  const [mapReady, setMapReady] = useState(false);
 
   const filtered =
     filter === "todos"
       ? incidents
-      : incidents.filter((i) => i.severity === filter)
+      : incidents.filter((i) => i.severity === filter);
 
   useEffect(() => {
-    if (!mapRef.current || mapInstanceRef.current) return
+    if (!mapRef.current || mapInstanceRef.current) return;
 
     const loadMap = async () => {
-      const L = await import("leaflet")
-      await import("leaflet/dist/leaflet.css")
+      const L = await import("leaflet");
+      await import("leaflet/dist/leaflet.css");
 
       const map = L.map(mapRef.current!, {
         center: [20.6767, -103.3475],
         zoom: 13,
         zoomControl: true,
-      })
+      });
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors",
-      }).addTo(map)
+      }).addTo(map);
 
       incidents.forEach((incident) => {
         const icon = L.divIcon({
           html: `<div style="background:${incident.color};width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>`,
           iconSize: [14, 14],
           className: "",
-        })
+        });
 
         L.marker([incident.lat, incident.lng], { icon })
           .addTo(map)
           .on("click", () => {
-            setSelectedIncident(incident)
-          })
-      })
+            setSelectedIncident(incident);
+          });
+      });
 
-      mapInstanceRef.current = map
-      setMapReady(true)
-    }
+      mapInstanceRef.current = map;
+      setMapReady(true);
+    };
 
-    loadMap()
+    loadMap();
 
     return () => {
       if (mapInstanceRef.current) {
-        ;(mapInstanceRef.current as { remove: () => void }).remove()
-        mapInstanceRef.current = null
+        (mapInstanceRef.current as { remove: () => void }).remove();
+        mapInstanceRef.current = null;
       }
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div className="flex flex-col gap-6 lg:flex-row">
@@ -256,5 +256,5 @@ export function IncidentMap() {
         </div>
       </div>
     </div>
-  )
+  );
 }

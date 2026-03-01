@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
-import { Shield, Facebook, Twitter, Instagram, Youtube } from "lucide-react"
+import { Link } from "react-router-dom";
+import { Shield, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 
-import { featureFlags } from "@/config/featureFlags"
+import { featureFlags } from "@/config/featureFlags";
 
 export function SiteFooter() {
   return (
@@ -147,7 +147,9 @@ export function SiteFooter() {
 
           {featureFlags.contenidoInstitucional.paginas && (
             <div className="flex flex-col gap-3">
-              <h3 className="text-sm font-semibold text-foreground">Contacto</h3>
+              <h3 className="text-sm font-semibold text-foreground">
+                Contacto
+              </h3>
               <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                 <p>Av. La Paz 2453, Col. Arcos Vallarta</p>
                 <p>Guadalajara, Jalisco, Mexico</p>
@@ -171,8 +173,8 @@ export function SiteFooter() {
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 md:flex-row">
           <p className="text-xs text-muted-foreground">
-            2025 Vigilancia Vecinal - UDGVIRTUAL. Prototipo academico. Todos
-            los derechos reservados.
+            2026 Vigilancia Vecinal - UDGVIRTUAL. Prototipo academico. Todos los
+            derechos reservados.
           </p>
           <p className="text-xs text-muted-foreground">
             Desarrollado por: Jonathan Daniel Gomez, Raymundo Chavarria y
@@ -181,5 +183,5 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -2,9 +2,10 @@
 
 interface ImportMetaEnv {
     readonly VITE_FUNC_GESTION_USUARIOS_ADMIN: string;
+    readonly VITE_DEPLOY_USUARIOS_EN_CONSTRUCCION: string;
     readonly VITE_FUNC_IDENTIDAD_LOGOTIPO: string;
     readonly VITE_FUNC_IDENTIDAD_FAVICON: string;
-    readonly VITE_FUNC_DISEÑO_RESPONSIVO: string;
+    readonly "VITE_FUNC_DISE\u00d1O_RESPONSIVO": string;
     readonly VITE_FUNC_MENU_PRINCIPAL: string;
     readonly VITE_FUNC_CONTENIDO_INSTITUCIONAL: string;
     readonly VITE_FUNC_CHAT_TIEMPO_REAL: string;

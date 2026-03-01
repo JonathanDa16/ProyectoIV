@@ -1,10 +1,12 @@
-
 /**
  * Logical Deployment Configuration
  * Maps environment variables (Spanish) to application features.
  * Use this configuration object to toggle functionality throughout the application.
  */
 export const featureFlags = {
+    deployment: {
+        usuariosEnConstruccion: import.meta.env.VITE_DEPLOY_USUARIOS_EN_CONSTRUCCION === 'true',
+    },
     gestionUsuarios: {
         admin: import.meta.env.VITE_FUNC_GESTION_USUARIOS_ADMIN === 'true',
     },
@@ -13,7 +15,7 @@ export const featureFlags = {
         favicon: import.meta.env.VITE_FUNC_IDENTIDAD_FAVICON === 'true',
     },
     interfaz: {
-        disenoResponsivo: import.meta.env.VITE_FUNC_DISEÑO_RESPONSIVO === 'true',
+        disenoResponsivo: import.meta.env["VITE_FUNC_DISE\u00d1O_RESPONSIVO"] === 'true',
         menuPrincipal: import.meta.env.VITE_FUNC_MENU_PRINCIPAL === 'true',
     },
     contenidoInstitucional: {

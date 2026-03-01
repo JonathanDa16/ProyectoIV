@@ -103,10 +103,12 @@ export function SiteHeader() {
                     Mi Perfil
                   </DropdownMenuItem>
                 )}
-                <DropdownMenuItem onClick={() => navigate("/reportes")}>
-                  <FileText className="mr-2 h-4 w-4" />
-                  Mis Reportes
-                </DropdownMenuItem>
+                {!featureFlags.deployment.usuariosEnConstruccion && (
+                  <DropdownMenuItem onClick={() => navigate("/reportes")}>
+                    <FileText className="mr-2 h-4 w-4" />
+                    Mis Reportes
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={logout}>
                   <LogOut className="mr-2 h-4 w-4" />

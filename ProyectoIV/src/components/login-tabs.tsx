@@ -1,63 +1,69 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { useAuth, UserRole } from "@/components/auth-provider"
-import { Shield, Users, Loader2, AlertCircle } from "lucide-react"
-import { toast } from "sonner"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useAuth, UserRole } from "@/components/auth-provider";
+import { Shield, Users, Loader2, AlertCircle } from "lucide-react";
+import { toast } from "sonner";
 
 export function LoginTabs() {
-  const [adminEmail, setAdminEmail] = useState("")
-  const [adminPassword, setAdminPassword] = useState("")
-  const [vecinoEmail, setVecinoEmail] = useState("")
-  const [vecinoPassword, setVecinoPassword] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [adminEmail, setAdminEmail] = useState("");
+  const [adminPassword, setAdminPassword] = useState("");
+  const [vecinoEmail, setVecinoEmail] = useState("");
+  const [vecinoPassword, setVecinoPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const { login } = useAuth()
-  const navigate = useNavigate()
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogin = async (role: UserRole, email: string, password: string) => {
+  const handleLogin = async (
+    role: UserRole,
+    email: string,
+    password: string,
+  ) => {
     if (!email || !password) {
-      setError("Por favor completa todos los campos")
-      return
+      setError("Por favor completa todos los campos");
+      return;
     }
 
-    setLoading(true)
-    setError("")
+    setLoading(true);
+    setError("");
 
     try {
-      const success = await login(email, password, role)
+      const success = await login(email, password, role);
       if (success) {
-        toast.success(`¡Bienvenido! Has iniciado sesión como ${role === "admin" ? "administrador" : "vecino"}`)
+        toast.success(
+          `¡Bienvenido! Has iniciado sesión como ${role === "admin" ? "administrador" : "vecino"}`,
+        );
         if (role === "admin") {
-          navigate("/admin")
+          navigate("/admin");
         } else {
-          navigate("/perfil")
+          navigate("/perfil");
         }
       } else {
-        setError("Credenciales incorrectas. Por favor, intenta de nuevo.")
-        toast.error("Credenciales incorrectas")
+        setError("Credenciales incorrectas. Por favor, intenta de nuevo.");
+        toast.error("Credenciales incorrectas");
       }
     } catch (err) {
-      setError("Ocurrió un error. Por favor, intenta de nuevo.")
-      toast.error("Error al iniciar sesión")
+      setError("Ocurrió un error. Por favor, intenta de nuevo.");
+      toast.error("Error al iniciar sesión");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="w-full max-w-md">
@@ -125,7 +131,9 @@ export function LoginTabs() {
 
               <Button
                 className="w-full"
-                onClick={() => handleLogin("vecino", vecinoEmail, vecinoPassword)}
+                onClick={() =>
+                  handleLogin("vecino", vecinoEmail, vecinoPassword)
+                }
                 disabled={loading}
               >
                 {loading ? (
@@ -139,9 +147,7 @@ export function LoginTabs() {
               </Button>
 
               <div className="rounded-lg border border-accent/20 bg-accent/10 p-3">
-                <p className="text-xs font-medium text-accent-foreground">
-                  Credenciales de prueba:
-                </p>
+                <p className="text-xs font-medium">Credenciales de prueba:</p>
                 <p className="mt-1 text-xs text-muted-foreground">
                   Email: vecino@ejemplo.mx
                 </p>
@@ -224,5 +230,5 @@ export function LoginTabs() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
