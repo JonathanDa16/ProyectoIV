@@ -25,6 +25,7 @@ export const featureFlags = {
         chat: import.meta.env.VITE_FUNC_CHAT_TIEMPO_REAL === 'true',
         foroFaq: import.meta.env.VITE_FUNC_FORO_FAQ === 'true',
         redesSociales: import.meta.env.VITE_FUNC_CONECTIVIDAD_SOCIAL === 'true',
+        // NOTE: Declared for rollout, but not connected to Home UI in this iteration.
         sliderImagenes: import.meta.env.VITE_FUNC_SLIDER_IMAGENES === 'true',
         valoracion: import.meta.env.VITE_FUNC_VALORACION_PAGINAS === 'true',
     },
