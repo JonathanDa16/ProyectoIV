@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Play, BookOpen } from "lucide-react"
-import { StarRating } from "@/components/star-rating"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Play, BookOpen } from "lucide-react";
+import { StarRating } from "@/components/star-rating";
 
 const videos = [
   {
@@ -10,7 +10,7 @@ const videos = [
     title: "Como reportar un incidente correctamente",
     description:
       "Tutorial paso a paso para crear un reporte efectivo con toda la informacion necesaria.",
-    embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    embedUrl: "https://www.youtube.com/embed/Z9HJ7ZGxcwg",
     duration: "5:32",
     category: "Tutorial",
   },
@@ -19,7 +19,7 @@ const videos = [
     title: "Medidas de prevencion para tu hogar",
     description:
       "Consejos practicos de seguridad para proteger tu casa y tu familia.",
-    embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    embedUrl: "https://www.youtube.com/embed/XyloZTeCv7I",
     duration: "8:15",
     category: "Prevencion",
   },
@@ -28,11 +28,11 @@ const videos = [
     title: "Organizacion vecinal efectiva",
     description:
       "Aprende a organizar rondines y crear una red de comunicacion entre vecinos.",
-    embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    embedUrl: "https://www.youtube.com/embed/BxuYm99Mee8",
     duration: "12:40",
     category: "Organizacion",
   },
-]
+];
 
 export function VideoSection() {
   return (
@@ -83,5 +83,5 @@ export function VideoSection() {
         ))}
       </div>
     </section>
-  )
+  );
 }
