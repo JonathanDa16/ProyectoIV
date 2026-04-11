@@ -72,7 +72,7 @@ export function HeroCarousel() {
       ))}
 
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-start justify-end px-4 pb-16 lg:px-6">
-        <div className="max-w-2xl">
+        <div key={current} className="max-w-2xl animate-fade-up">
           <h1 className="text-balance font-serif text-3xl font-bold tracking-tight text-card md:text-4xl lg:text-5xl">
             {slides[current].title}
           </h1>
@@ -81,7 +81,7 @@ export function HeroCarousel() {
           </p>
           <div className="mt-6 flex items-center gap-3">
             <Link to={slides[current].href}>
-              <Button size="lg" className="font-semibold">
+              <Button size="lg" className="font-semibold animate-float-soft">
                 {slides[current].cta}
               </Button>
             </Link>

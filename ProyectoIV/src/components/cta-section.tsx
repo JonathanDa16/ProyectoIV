@@ -6,7 +6,7 @@ import { featureFlags } from "@/config/featureFlags"
 export function CtaSection() {
   return (
     <section className="border-t border-border bg-primary py-16">
-      <div className="mx-auto max-w-7xl px-4 text-center lg:px-6">
+      <div className="mx-auto max-w-7xl animate-fade-up px-4 text-center lg:px-6">
         <h2 className="text-balance font-serif text-2xl font-bold text-primary-foreground md:text-3xl">
           Juntos podemos hacer la diferencia
         </h2>
@@ -19,10 +19,10 @@ export function CtaSection() {
             <Button
               size="lg"
               variant="secondary"
-              className="font-semibold"
+              className="group font-semibold hover-lift"
             >
               Crear un Reporte
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
           </Link>
           {featureFlags.contacto.mapa && (
@@ -30,7 +30,7 @@ export function CtaSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-primary-foreground/30 font-semibold text-primary-foreground hover:bg-primary-foreground/10"
+                className="border-primary-foreground/30 font-semibold text-primary-foreground hover-lift hover:bg-primary-foreground/10"
               >
                 Explorar el Mapa
               </Button>

@@ -187,19 +187,19 @@ export default function Home() {
       {featureFlags.contenidoInstitucional.paginas && (
         <section
           id="nosotros"
-          className="scroll-mt-16 py-12 bg-background border-b border-border"
+          className="scroll-mt-16 border-b border-border bg-background py-12 animate-fade-in"
         >
           <NosotrosPage />
         </section>
       )}
 
-      <section id="reportes" className="scroll-mt-16 py-12 bg-muted/30">
+      <section id="reportes" className="scroll-mt-16 bg-muted/30 py-12 animate-fade-in">
         <ReportesPage />
       </section>
 
       {featureFlags.interaccion.valoracion && (
         <section className="border-t border-border bg-background py-10">
-          <div className="mx-auto max-w-3xl px-4 text-center lg:px-6">
+          <div className="mx-auto max-w-3xl animate-fade-up px-4 text-center lg:px-6">
             <h2 className="font-serif text-2xl font-bold text-foreground">
               Valora esta pagina
             </h2>
@@ -264,10 +264,11 @@ export default function Home() {
                   Opiniones de la comunidad
                 </h3>
                 <div className="mt-3 space-y-3">
-                  {mergedFeedback.map((feedback) => (
+                  {mergedFeedback.map((feedback, index) => (
                     <article
                       key={feedback.id}
-                      className="rounded-xl border border-border bg-card p-4 shadow-sm"
+                      className="hover-lift rounded-xl border border-border bg-card p-4 shadow-sm animate-pop-in"
+                      style={{ animationDelay: `${Math.min(index, 8) * 60}ms` }}
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex items-center gap-3">

@@ -35,7 +35,11 @@ export function StatsSection() {
           {stats.map((stat, i) => {
             const Icon = stat.icon
             return (
-              <div key={i} className="flex flex-col items-center text-center">
+              <div
+                key={i}
+                className="hover-lift flex flex-col items-center rounded-xl p-3 text-center animate-fade-up"
+                style={{ animationDelay: `${i * 90}ms` }}
+              >
                 <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
                   <Icon className={`h-6 w-6 ${stat.color}`} />
                 </div>
