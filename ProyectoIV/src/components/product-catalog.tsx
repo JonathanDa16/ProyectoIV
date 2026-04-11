@@ -20,6 +20,7 @@ import {
   CheckCircle2,
   Star,
 } from "lucide-react"
+import { toast } from "sonner"
 
 interface Product {
   id: number
@@ -114,12 +115,18 @@ export function ProductCatalog() {
     setCart((prev) => {
       const existing = prev.find((item) => item.product.id === product.id)
       if (existing) {
+        toast.success(`"${product.name}" agregado al carrito`, {
+          description: `Cantidad en carrito: ${existing.quantity + 1}`,
+        })
         return prev.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
       }
+      toast.success(`"${product.name}" agregado al carrito`, {
+        description: "Cantidad en carrito: 1",
+      })
       return [...prev, { product, quantity: 1 }]
     })
   }
@@ -165,7 +172,7 @@ export function ProductCatalog() {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" className="relative">
+            <Button variant="outline" className="relative hover-lift">
               <ShoppingCart className="mr-2 h-4 w-4" />
               Carrito
               {itemCount > 0 && (
@@ -271,7 +278,8 @@ export function ProductCatalog() {
         {products.map((product) => (
           <Card
             key={product.id}
-            className="group overflow-hidden transition-all hover:shadow-md"
+            className="group hover-lift animate-pop-in overflow-hidden transition-all hover:shadow-md"
+            style={{ animationDelay: `${product.id * 70}ms` }}
           >
             <div className="relative aspect-square overflow-hidden">
               <img

@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react"
 export default function ContactoPage() {
     return (
         <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
-            <div className="mb-8">
+            <div className="mb-8 animate-fade-up">
                 <h1 className="font-serif text-3xl font-bold text-foreground">
                     Contacto
                 </h1>
@@ -16,12 +16,12 @@ export default function ContactoPage() {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-3">
-                <div className="lg:col-span-2">
+                <div className="lg:col-span-2 animate-pop-in">
                     <ContactForm />
                 </div>
 
                 <div className="space-y-4">
-                    <Card>
+                    <Card className="hover-lift animate-fade-up" style={{ animationDelay: "70ms" }}>
                         <CardContent className="flex items-start gap-3 p-4">
                             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                                 <MapPin className="h-5 w-5 text-primary" />
@@ -41,7 +41,7 @@ export default function ContactoPage() {
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="hover-lift animate-fade-up" style={{ animationDelay: "130ms" }}>
                         <CardContent className="flex items-start gap-3 p-4">
                             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                                 <Phone className="h-5 w-5 text-primary" />
@@ -59,7 +59,7 @@ export default function ContactoPage() {
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="hover-lift animate-fade-up" style={{ animationDelay: "190ms" }}>
                         <CardContent className="flex items-start gap-3 p-4">
                             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                                 <Mail className="h-5 w-5 text-primary" />
@@ -77,7 +77,7 @@ export default function ContactoPage() {
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="hover-lift animate-fade-up" style={{ animationDelay: "250ms" }}>
                         <CardContent className="flex items-start gap-3 p-4">
                             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                                 <Clock className="h-5 w-5 text-primary" />

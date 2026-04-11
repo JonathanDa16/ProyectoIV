@@ -3,7 +3,7 @@ import { ProductCatalog } from "@/components/product-catalog"
 export default function TiendaPage() {
     return (
         <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
-            <div className="mb-8">
+            <div className="mb-8 animate-fade-up">
                 <h1 className="font-serif text-3xl font-bold text-foreground">
                     Tienda de Seguridad
                 </h1>

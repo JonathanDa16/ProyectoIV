@@ -53,8 +53,8 @@ const faqs = [
 export default function FaqPage() {
     return (
         <div className="mx-auto max-w-3xl px-4 py-8 lg:px-6">
-            <div className="mb-8 text-center">
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+            <div className="mb-8 text-center animate-fade-up">
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 animate-float-soft">
                     <HelpCircle className="h-7 w-7 text-primary" />
                 </div>
                 <h1 className="font-serif text-3xl font-bold text-foreground">
@@ -66,7 +66,7 @@ export default function FaqPage() {
                 </p>
             </div>
 
-            <Card>
+            <Card className="animate-pop-in hover-lift">
                 <CardContent className="p-2 md:p-4">
                     <Accordion type="single" collapsible className="w-full">
                         {faqs.map((faq, i) => (
