@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 import {
   ShoppingCart,
   Plus,
@@ -19,23 +19,23 @@ import {
   Trash2,
   CheckCircle2,
   Star,
-} from "lucide-react"
-import { toast } from "sonner"
+} from "lucide-react";
+import { toast } from "sonner";
 
 interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  image: string
-  category: string
-  rating: number
-  reviews: number
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+  rating: number;
+  reviews: number;
 }
 
 interface CartItem {
-  product: Product
-  quantity: number
+  product: Product;
+  quantity: number;
 }
 
 const products: Product[] = [
@@ -105,31 +105,31 @@ const products: Product[] = [
     rating: 4.4,
     reviews: 156,
   },
-]
+];
 
 export function ProductCatalog() {
-  const [cart, setCart] = useState<CartItem[]>([])
-  const [orderPlaced, setOrderPlaced] = useState(false)
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
   const addToCart = (product: Product) => {
     setCart((prev) => {
-      const existing = prev.find((item) => item.product.id === product.id)
+      const existing = prev.find((item) => item.product.id === product.id);
       if (existing) {
         toast.success(`"${product.name}" agregado al carrito`, {
           description: `Cantidad en carrito: ${existing.quantity + 1}`,
-        })
+        });
         return prev.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
+            : item,
+        );
       }
       toast.success(`"${product.name}" agregado al carrito`, {
         description: "Cantidad en carrito: 1",
-      })
-      return [...prev, { product, quantity: 1 }]
-    })
-  }
+      });
+      return [...prev, { product, quantity: 1 }];
+    });
+  };
 
   const updateQuantity = (productId: number, delta: number) => {
     setCart((prev) =>
@@ -137,27 +137,27 @@ export function ProductCatalog() {
         .map((item) =>
           item.product.id === productId
             ? { ...item, quantity: Math.max(0, item.quantity + delta) }
-            : item
+            : item,
         )
-        .filter((item) => item.quantity > 0)
-    )
-  }
+        .filter((item) => item.quantity > 0),
+    );
+  };
 
   const removeFromCart = (productId: number) => {
-    setCart((prev) => prev.filter((item) => item.product.id !== productId))
-  }
+    setCart((prev) => prev.filter((item) => item.product.id !== productId));
+  };
 
   const total = cart.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
-    0
-  )
-  const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0)
+    0,
+  );
+  const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleOrder = () => {
-    setOrderPlaced(true)
-    setCart([])
-    setTimeout(() => setOrderPlaced(false), 4000)
-  }
+    setOrderPlaced(true);
+    setCart([]);
+    setTimeout(() => setOrderPlaced(false), 4000);
+  };
 
   return (
     <div>
@@ -191,7 +191,7 @@ export function ProductCatalog() {
               <div className="flex items-center gap-2 rounded-lg border border-success/30 bg-success/10 p-3 animate-in fade-in">
                 <CheckCircle2 className="h-5 w-5 text-success" />
                 <p className="text-sm font-medium text-success">
-                  Pedido simulado exitosamente
+                  El pedido se ha realizado exitosamente
                 </p>
               </div>
             )}
@@ -303,10 +303,11 @@ export function ProductCatalog() {
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
-                    className={`h-3 w-3 ${i < Math.floor(product.rating)
-                      ? "fill-warning text-warning"
-                      : "text-muted-foreground/30"
-                      }`}
+                    className={`h-3 w-3 ${
+                      i < Math.floor(product.rating)
+                        ? "fill-warning text-warning"
+                        : "text-muted-foreground/30"
+                    }`}
                   />
                 ))}
                 <span className="ml-1 text-[10px] text-muted-foreground">
@@ -328,5 +329,5 @@ export function ProductCatalog() {
         ))}
       </div>
     </div>
-  )
+  );
 }
